@@ -1,0 +1,50 @@
+{
+    "name": "assurdeal/laravel-orias",
+    "description": "Work with the ORIAS web service in Laravel",
+    "keywords": ["SOAP", "Web Service", "Broker", "laravel", "ORIAS"],
+    "require": {
+        "php": "^8.2",
+        "ext-soap": "*",
+        "illuminate/support": "^10.0",
+        "ricorocks-digital-agency/soap": "^1.7"
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.20",
+        "laravel/pint": "^1.0",
+        "orchestra/testbench": "^8.8",
+        "pestphp/pest-plugin-laravel": "^2.0"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Assurdeal\\LaravelOrias\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Assurdeal\\LaravelOrias\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Percy Mamedy",
+            "email": "percymamedy@gmail.com",
+            "role": "Lead Developer"
+        }
+    ],
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Assurdeal\\LaravelOrias\\LaravelOriasServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
