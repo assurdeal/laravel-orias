@@ -27,8 +27,8 @@ it('can return an instance of the Intermediary DTO from request', function () {
                         'bankActivities' => (object) [],
                     ],
                 ],
-            ]
-        ]
+            ],
+        ],
     ];
 
     Soap::fake([

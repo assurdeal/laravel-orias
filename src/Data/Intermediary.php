@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Assurdeal\LaravelOrias\Data;
 
+use Assurdeal\LaravelOrias\Enums\RegistrationCategory;
 use RicorocksDigitalAgency\Soap\Response\Response;
 
 class Intermediary implements Data
 {
     /**
      * Create a new instance of the DTO.
+     *
+     * @param  array<Registration>  $registrations
      */
     public function __construct(
         public string $registrationNumber,
@@ -18,6 +21,20 @@ class Intermediary implements Data
         public ?string $denomination = null,
         public array $registrations = [],
     ) {
+    }
+
+    /**
+     * Determine if the intermediary is registered for a given category.
+     */
+    public function isRegisteredAs(RegistrationCategory $category): bool
+    {
+        foreach ($this->registrations as $registration) {
+            if ($registration->categoryMatches($category) && $registration->registrationDateIsValid()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -43,7 +60,7 @@ class Intermediary implements Data
             foundInRegistry: $baseInformation?->foundInRegistry ?? false,
             siren: $baseInformation?->siren ?? null,
             denomination: $baseInformation?->denomination ?? null,
-            registrations: collect($registrations)->map(fn ($registration) =>  Registration::fromResponse($registration))->all()
+            registrations: collect($registrations)->map(fn ($registration) => Registration::fromResponse($registration))->all()
         );
     }
 }

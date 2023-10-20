@@ -38,7 +38,7 @@ class ShowBrokerRequest implements SoapRequest
             'intermediaries' => [
                 [
                     'registrationNumber' => $this->orias,
-                ]
+                ],
             ],
         ];
     }
