@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Assurdeal\LaravelOrias\Tests;
 
-use Orchestra\Testbench\TestCase as Orchestra;
 use Assurdeal\LaravelOrias\LaravelOriasServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 use RicorocksDigitalAgency\Soap\Providers\SoapServiceProvider;
 
 class TestCase extends Orchestra
@@ -17,7 +17,7 @@ class TestCase extends Orchestra
     {
         return [
             SoapServiceProvider::class,
-            LaravelOriasServiceProvider::class
+            LaravelOriasServiceProvider::class,
         ];
     }
 
@@ -28,5 +28,16 @@ class TestCase extends Orchestra
     {
         config()->set('services.orias.key', 'testing');
         config()->set('services.orias.wsdl', 'https://ws.orias.fr/service?wsdl');
+        config()->set('services.orias.options', [
+            'uri' => 'http://schemas.xmlsoap.org/soap/envelope/',
+            'style' => SOAP_RPC,
+            'use' => SOAP_ENCODED,
+            'soap_version' => SOAP_1_1,
+            'cache_wsdl' => WSDL_CACHE_NONE,
+            'connection_timeout' => 30,
+            'trace' => true,
+            'encoding' => 'UTF-8',
+            'exceptions' => true,
+        ]);
     }
 }

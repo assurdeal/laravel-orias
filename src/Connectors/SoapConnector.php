@@ -5,9 +5,10 @@ declare(strict_types=1);
 namespace Assurdeal\LaravelOrias\Connectors;
 
 use Assurdeal\LaravelOrias\Requests\SoapRequest;
+use Assurdeal\LaravelOrias\Responses\SoapResponse;
 use RicorocksDigitalAgency\Soap\Facades\Soap;
 use RicorocksDigitalAgency\Soap\Request\Request as BaseSoapRequest;
-use Assurdeal\LaravelOrias\Responses\SoapResponse;
+use SoapFault;
 
 class SoapConnector implements Connector
 {
@@ -26,14 +27,20 @@ class SoapConnector implements Connector
      */
     public function send(SoapRequest $request): SoapResponse
     {
-        return SoapResponse::make(
-            $this->soap()
-                ->call(
-                    $request->method(),
-                    array_merge(['user' => $this->key], $request->parameters())
-                ),
-            $request
-        );
+        try {
+            $method = $request->method();
+            $parameters = array_merge(['user' => $this->key], $request->parameters());
+
+            return SoapResponse::make(
+                response: $this->soap()->call($method, $parameters),
+                request: $request
+            );
+        } catch (SoapFault $exception) {
+            return SoapResponse::make(
+                request: $request,
+                exception: $exception
+            );
+        }
     }
 
     /**
