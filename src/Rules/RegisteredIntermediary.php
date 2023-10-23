@@ -39,7 +39,7 @@ class RegisteredIntermediary implements ValidationRule
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
         if (strlen($value) !== self::REGISTRATION_NUMBER_LENGTH) {
-            $fail('The :attribute is not of a valid length.');
+            $fail('The :attribute is not of a valid length.')->translate();
 
             return;
         }
@@ -47,7 +47,7 @@ class RegisteredIntermediary implements ValidationRule
         $response = ShowBrokerRequest::make($value)->send();
 
         if ($response->failed()) {
-            $fail('The :attribute is not a registered intermediary.');
+            $fail('The :attribute is not a registered intermediary.')->translate();
 
             return;
         }
@@ -56,7 +56,7 @@ class RegisteredIntermediary implements ValidationRule
         $intermediary = $response->dto();
 
         if (! $intermediary->foundInRegistry) {
-            $fail('The :attribute was not found in the registry of intermediaries.');
+            $fail('The :attribute was not found in the registry of intermediaries.')->translate();
 
             return;
         }
@@ -67,7 +67,7 @@ class RegisteredIntermediary implements ValidationRule
                 ->isNotEmpty();
 
             if (! $valid) {
-                $fail('The :attribute is not registered for any of the valid categories.');
+                $fail('The :attribute is not registered for any of the valid categories.')->translate();
 
                 return;
             }
@@ -79,7 +79,7 @@ class RegisteredIntermediary implements ValidationRule
                 ->count() === count($this->allValidRegistrations);
 
             if (! $valid) {
-                $fail('The :attribute is not registered for all of the valid categories.');
+                $fail('The :attribute is not registered for all of the valid categories.')->translate();
             }
         }
     }

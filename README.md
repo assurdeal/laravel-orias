@@ -64,6 +64,22 @@ Validator::make($data, [
 ]);
 ```
 
+## Translations
+
+Add the following lines to your `lang/xx.json` files where `xx` represents the locale you want to translate in.
+
+Example for `resources/fr.json`
+
+```json
+{
+  "The :attribute is not of a valid length.": "Le :attribute n'est pas d'une longueur valide.",
+  "The :attribute is not a registered intermediary.": "Le :attribute n'est pas un intermédiaire enregistré.",
+  "The :attribute was not found in the registry of intermediaries.": "Le :attribute n'a pas été trouvé dans le registre des intermédiaires.",
+  "The :attribute is not registered for any of the valid categories.": "Le :attribute n'est pas enregistré pour aucune des catégories valides.",
+  "The :attribute is not registered for all of the valid categories.": "Le :attribute n'est pas enregistré pour toutes les catégories valides."
+}
+```
+
 ## Testing
 
 ```bash
