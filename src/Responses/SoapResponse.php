@@ -21,8 +21,7 @@ class SoapResponse
         protected SoapRequest $request,
         protected ?Response $response = null,
         protected ?SoapFault $exception = null
-    ) {
-    }
+    ) {}
 
     /**
      * Get DTO from the response.
