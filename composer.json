@@ -13,13 +13,13 @@
     "require": {
         "php": "^8.2",
         "ext-soap": "*",
-        "illuminate/support": "^10.0",
-        "ricorocks-digital-agency/soap": "^1.7"
+        "illuminate/support": "^11.0",
+        "ricorocks-digital-agency/soap": "^2.0"
     },
     "require-dev": {
         "pestphp/pest": "^2.20",
         "laravel/pint": "^1.0",
-        "orchestra/testbench": "^8.8",
+        "orchestra/testbench": "^9.0",
         "pestphp/pest-plugin-laravel": "^2.0"
     },
     "autoload": {
