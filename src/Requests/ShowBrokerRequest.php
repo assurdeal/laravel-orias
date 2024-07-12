@@ -18,8 +18,7 @@ class ShowBrokerRequest implements SoapRequest
      */
     public function __construct(
         protected string $orias
-    ) {
-    }
+    ) {}
 
     /**
      * {@inheritdoc}

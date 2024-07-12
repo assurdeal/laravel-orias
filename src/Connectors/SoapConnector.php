@@ -19,8 +19,7 @@ class SoapConnector implements Connector
         protected string $wsdl,
         protected string $key,
         protected array $options = []
-    ) {
-    }
+    ) {}
 
     /**
      * {@inheritdoc}

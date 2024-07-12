@@ -18,8 +18,7 @@ class Registration
         public ?string $status = null,
         public ?Carbon $registrationDate = null,
         public ?Carbon $deletionDate = null,
-    ) {
-    }
+    ) {}
 
     /**
      * Determine if the registration matches the given category.

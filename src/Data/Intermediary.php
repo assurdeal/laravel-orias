@@ -20,8 +20,7 @@ class Intermediary implements Data
         public ?string $siren = null,
         public ?string $denomination = null,
         public array $registrations = [],
-    ) {
-    }
+    ) {}
 
     /**
      * Determine if the intermediary is registered for a given category.
